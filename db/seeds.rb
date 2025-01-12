@@ -7,3 +7,17 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+file_path = Rails.root.join('db', 'data', 'rates.json')
+if File.exist?(file_path)
+    rates = JSON.parse(File.read(file_path))
+
+    rates.each do |date, currencies|
+        currencies.each do |currency, rate|
+            ExchangeRate.create(date: date, currency: currency, rate: rate)
+        end
+    end
+else
+    Rails.logger.error("Exchange rates file not found at #{file_path}")
+end
+

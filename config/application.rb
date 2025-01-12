@@ -11,6 +11,10 @@ module CurrencyExchange
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 8.0
 
+    # Add the lib directory to autoload paths
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.eager_load_paths += %W(#{config.root}/lib)
+
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
@@ -23,5 +27,6 @@ module CurrencyExchange
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.eager_load_paths += Dir[Rails.root.join('lib', 'currency_exchange', '*.rb')]
   end
 end

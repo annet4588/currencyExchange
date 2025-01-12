@@ -1,0 +1,44 @@
+<h1>Exchange Rates</h1>
+
+<%= form_with url: exchange_rates_path, method: :get do |f| %>
+  <div>
+    <%= label_tag :date, "Date" %>
+    <%= date_field_tag :date, nil %>
+  </div>
+
+  <div>
+    <%= label_tag :from_currency, "From currency" %>
+    <%= text_field_tag :from_currency, nil %>
+  </div>
+  
+  <div>
+    <%= label_tag :to_currency, "To Currency" %>
+    <%= text_field_tag :to_currency, nil %>
+  </div>
+
+  <div>
+    <%= submit_tag "Get Rate" %>
+  </div>
+<% end %>
+
+<% if flash[:alert] %>
+  <div class="alert alert-warning">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<% if @rate %>
+  <h2>Exchange Rate For <%= params[:from_currency] %> to <%= params[:to_currency] %> on <%= params[:date] %></h2>
+  <p><%= @rate %></p>
+<% elsif @rate.nil? && flash[:alert].blank? %>
+  <p>No data found or please fill in the required fields.</p>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    
+    if (!document.querySelector("form").querySelector("[name='date']").value) {
+      document.querySelector("form").reset();
+    }
+  });
+</script>
