@@ -1,44 +1,59 @@
-<h1>Exchange Rates</h1>
+<h1 class="text-center">Exchange Rates</h1>
 
-<%= form_with url: exchange_rates_path, method: :get do |f| %>
-  <div>
-    <%= label_tag :date, "Date" %>
-    <%= date_field_tag :date, nil %>
-  </div>
+<section class="form-container">
+  <%= form_with url: exchange_rates_path, method: :get, html: {class: 'exchange-rate-form' } do |f| %>
+    <div class="form-group">
+      <%= label_tag :date, "Date" %>
+      <%= date_field_tag :date, nil %>
+    </div>
 
-  <div>
-    <%= label_tag :from_currency, "From currency" %>
-    <%= text_field_tag :from_currency, nil %>
-  </div>
-  
-  <div>
-    <%= label_tag :to_currency, "To Currency" %>
-    <%= text_field_tag :to_currency, nil %>
-  </div>
+    <div class="form-group">
+      <%= label_tag :from_currency, "From Currency" %>
+      <%= text_field_tag :from_currency, nil %>
+    </div>
+    
+    <div class="form-group">
+      <%= label_tag :to_currency, "To Currency" %>
+      <%= text_field_tag :to_currency, nil %>
+    </div>
 
-  <div>
-    <%= submit_tag "Get Rate" %>
-  </div>
-<% end %>
+    <div class="form-group text-center">
+      <%= submit_tag "Get Rate", class: "btn btn-success" %>
+    </div>
+  <% end %>
 
-<% if flash[:alert] %>
-  <div class="alert alert-warning">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-warning">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+</section>
 
-<% if @rate %>
-  <h2>Exchange Rate For <%= params[:from_currency] %> to <%= params[:to_currency] %> on <%= params[:date] %></h2>
-  <p><%= @rate %></p>
-<% elsif @rate.nil? && flash[:alert].blank? %>
-  <p>No data found or please fill in the required fields.</p>
-<% end %>
+<section class="output-container">
+  <% if @rate %>
+    <h2 class="text-center">Exchange Rate for 
+    <span class="output-field"><%= params[:from_currency] %></span>
+     to 
+     <span class="output-field"><%= params[:to_currency] %></span> 
+     on 
+     <span class="output-field"><%= params[:date]%></span>
+    </h2>
+    <p class="text-center output-field"><%= @rate %></p>
+  <% elsif @rate.nil? && flash[:alert].blank? %>
+    <p class="text-center">No data found or please fill in the required fields.</p>
+  <% end %>
+</section>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    
-    if (!document.querySelector("form").querySelector("[name='date']").value) {
-      document.querySelector("form").reset();
+document.addEventListener("DOMContentLoaded", function() {
+  const form = document.querySelector(".exchange-rate-form");
+
+  form.addEventListener("submit", function(event) {
+    const dateField = form.querySelector("[name='date']");  
+    if (!dateField.value) {
+      event.preventDefault(); 
+      alert("Please select the date.");
     }
   });
+});
 </script>

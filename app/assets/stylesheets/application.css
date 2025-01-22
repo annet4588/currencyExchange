@@ -8,3 +8,69 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+ .form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .form-group label {
+    width: 120px;
+    margin-right: 10px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form-group input {
+    flex: 1;
+  }
+  .form-label {
+    font-weight: bold;
+  }
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .btn-success {
+    background-color: rgb(61, 185, 61);
+    color: white;
+  }
+  
+  .alert {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #ffebcc;
+    border: 1px solid #ffc107;
+    color: #856404;
+    border-radius: 4px;
+  }
+  
+  .output-container {
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .output-field{
+    font-weight: bold;
+    color: red;
+  }
+  .text-center {
+    text-align: center;
+  }

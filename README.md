@@ -1,24 +1,42 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# CurrencyExchange app
+* This Ruby on Rails application provides users with ability to view exchange rates between different currencies on a specific date.
 
-Things you may want to cover:
 
-* Ruby version
+## Ruby Version
+* 3.3.6
 
-* System dependencies
+## Rails Version
+* 8.0.1
 
-* Configuration
+## System Dependencies
 
-* Database creation
+* Ruby
+* Rails 
+* SQLite3
 
-* Database initialization
+## Install Dependencies
+* Install the necessary Ruby gems by ranning:
+`bash`
+`bandle install`
 
-* How to run the test suite
+## Database creation
+- Create the database and run the migrations:
+`bash` 
+`rails db:create`
+`rails db:migrate`
+- This will create 
 
-* Services (job queues, cache servers, search engines, etc.)
+## Seed the Database
 
-* Deployment instructions
+This will load the initial data from the `db/data/rates.json` file
+ to populate the database with initial exchange rate data. Run:
+`rails db:seed`
 
-* ...
+##  How to run the test suite
+
+The app requires an initial setup done by running:
+`rails test`
+
+

@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   # Define the root route or routes
   root "exchange_rates#index"  # This will make the index page the homepage 
 
-  resources :exchange_rates, only: [:index, :show]
+  resources :exchange_rates, only: [:index]
 end
